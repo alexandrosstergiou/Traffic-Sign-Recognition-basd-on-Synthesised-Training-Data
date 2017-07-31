@@ -1,8 +1,9 @@
 import numpy as np
 import os
-from PIL import Image
+from PIL import Image, ImageFilter
 import sys
 import cv2
+import glob
 
 def load_paths(directory):
     paths = []
@@ -12,9 +13,13 @@ def load_paths(directory):
     return paths
 
 def blur(image):
+    
     kernel = np.ones((5,5),np.float32)/25
-    dst = cv2.filter2D(image,-1,kernel)
+    dst = cv2.fastNlMeansDenoisingColored(image,None,10,48,7,5)
+    dst = cv2.filter2D(dst,-1,kernel)
     #blur = cv2.bilateralFilter(image,9,75,75)
+    #blur = cv2.blur(image,(5,5))
+    #blur = cv2.GaussianBlur(image,(5,5),0)
     return dst
 
 def resize_and_save(path,size,directory):
@@ -22,12 +27,15 @@ def resize_and_save(path,size,directory):
     try:
         img = Image.open(path)
         img = img.resize(size)
-        im = np.uint8(img)
+        img.save(path, "JPEG")
+        im = cv2.imread(path)
+        im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
         blurred = blur(im)
         img = Image.fromarray(blurred)
+        #img = img.filter(ImageFilter.SHARPEN)
         img.save(directory, "JPEG")
     except IOError:
-        print "cannot create thumbnail for '%s'" % infile
+        print "cannot create thumbnail for '%s'" % path
 
 
 directory = 'val_set_blurred'
@@ -61,7 +69,10 @@ if (not os.path.exists('SGTSD/Images_blurred/')):
 
 
 paths = load_paths("SGTSD/Images/")
+classi = 0
 for path in paths:
+    print ("Processing class: "+str(float(classi)/len(paths)))
+    classi = classi + 1
     temp = load_paths(path)
     for p in temp:
         elements = p.split('/')
