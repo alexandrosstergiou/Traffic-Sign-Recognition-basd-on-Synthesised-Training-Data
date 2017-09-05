@@ -16,6 +16,10 @@ $ clone https://github.com/alexandrosstergiou/The-Drivers-Assistant-Traffic-Sign
 Note that the synthetic dataset SGTSD will need aprox. 10Gb and the sample set used for training will be close to 1Gb.
 Please allow sufficient storing space when running the genertor on a system.
 
+## License
+MIT
+**This system was made for the puroses of my MSc thesis and thus is a part of University of Essex. For commercial purposes / non private usage, the university will need to be contacted.
+
 ## Contact
 Alexandros Stergiou
 
