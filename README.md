@@ -7,9 +7,11 @@ A main concern of road sign recognition systems has been the use of a large data
 
 ## Installation
 Git is required to download and install the repo. You can open Terminal (for Linux and Mac) or cmd (for Windows) and follow these commands:
+```sh
 $ sudo apt-get update
 $ sudo apt-get install git
 $ clone https://github.com/alexandrosstergiou/The-Drivers-Assistant-Traffic-Sign-Recognition
+```
 
 Note that the synthetic dataset SGTSD will need aprox. 10Gb and the sample set used for training will be close to 1Gb.
 Please allow sufficient storing space when running the genertor on a system.
