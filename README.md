@@ -17,7 +17,7 @@ Git is required to download and install the repo. You can open Terminal (for Lin
 ```sh
 $ sudo apt-get update
 $ sudo apt-get install git
-$ clone https://github.com/alexandrosstergiou/The-Drivers-Assistant-Traffic-Sign-Recognition
+$ git clone https://github.com/alexandrosstergiou/The-Drivers-Assistant-Traffic-Sign-Recognition
 ```
 
 Note that the synthetic dataset SGTSD will need aprox. 10Gb and the sample set used for training will be close to 1Gb.

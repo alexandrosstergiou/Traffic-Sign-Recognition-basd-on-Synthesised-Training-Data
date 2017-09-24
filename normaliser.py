@@ -37,7 +37,7 @@ def resize_and_save(path,size,directory):
     except IOError:
         print "cannot create thumbnail for '%s'" % path
 
-
+"""
 directory = 'val_set_blurred'
 if (not os.path.exists('val_set_blurred')):
     for sign in load_paths("Traffic_Signs_Templates/Images"):
@@ -57,7 +57,7 @@ for path in paths:
         d = 'val_set_blurred/'+elements[-2]+"/"+elements[-1]
         resize_and_save(p,(48,48), d)
 
-
+"""
 
 directory = 'SGTSD/Images_blurred/'
 if (not os.path.exists('SGTSD/Images_blurred/')):
