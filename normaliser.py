@@ -23,39 +23,38 @@ def blur(image):
     return dst
 
 def resize_and_save(path,size,directory):
-    
     try:
         img = Image.open(path)
         img = img.resize(size)
-        img.save(path, "JPEG")
+        img.save(path)
         im = cv2.imread(path)
         im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
         blurred = blur(im)
         img = Image.fromarray(blurred)
         #img = img.filter(ImageFilter.SHARPEN)
-        img.save(directory, "JPEG")
+        img.save(directory)
     except IOError:
         print "cannot create thumbnail for '%s'" % path
 
-"""
-directory = 'val_set_blurred'
-if (not os.path.exists('val_set_blurred')):
-    for sign in load_paths("Traffic_Signs_Templates/Images"):
-        head,tail = sign.split('.')
-        name = []
-        name = head.split('/')
-        os.makedirs('val_set_blurred/'+name[-1])
+for i in range(1,11):
+    directory = 'val_set_blurred_'+str(i)
+    if (not os.path.exists('val_set_blurred_'+str(i))):
+        for sign in load_paths("Traffic_Signs_Templates/Images"):
+            head,tail = sign.split('.')
+            name = []
+            name = head.split('/')
+            os.makedirs('val_set_blurred_'+str(i)+'/'+name[-1])
 
 
 
 
-paths = load_paths("val_set")
-for path in paths:
-    temp = load_paths(path)
-    for p in temp:
-        elements = p.split('/')
-        d = 'val_set_blurred/'+elements[-2]+"/"+elements[-1]
-        resize_and_save(p,(48,48), d)
+    paths = load_paths("val_set_"+str(i))
+    for path in paths:
+        temp = load_paths(path)
+        for p in temp:
+            elements = p.split('/')
+            d = 'val_set_blurred_'+str(i)+'/'+elements[-2]+"/"+elements[-1]
+            resize_and_save(p,(48,48), d)
 
 """
 
@@ -79,3 +78,4 @@ for path in paths:
         d = 'SGTSD/Images_blurred/'+elements[-2]+"/"+elements[-1]
         resize_and_save(p,(48,48), d)
 
+"""
